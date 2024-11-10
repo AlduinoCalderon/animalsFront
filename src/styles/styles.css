@@ -1,0 +1,181 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333; /* Asegura que el texto sea legible en la mayoría de los fondos */
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Estilo para la lista de animales con Grid */
+.help-section {
+    margin-top: 40px;
+    background-color: #ffffff; /* Fondo blanco para resaltar */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));  /* Crea columnas dinámicas */
+    gap: 20px;
+}
+
+/* Estilo de las tarjetas de animales */
+.animal-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd; /* Agrega un borde suave */
+    transition: transform 0.3s ease-in-out; 
+}
+
+.animal-card:hover {
+    transform: scale(1.05); /* Efecto de hover */
+}
+
+.animal-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.animal-card h3 {
+    margin-top: 12px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.animal-card p {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.help-button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background-color: #008cba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Solo transicionar el color de fondo */
+}
+
+.help-button:hover {
+    background-color: #005f72;
+}
+
+/* Estilos específicos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .animals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Las columnas se ajustan a pantallas medianas */
+    }
+
+    .animal-card {
+        width: 90%; /* Tarjetas ocupando el 90% del ancho en pantallas medianas */
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
+
+/* Estilos para pantallas más pequeñas (móviles) */
+@media (max-width: 480px) {
+    .animals-grid {
+        grid-template-columns: 1fr; /* Una sola columna en pantallas muy pequeñas */
+    }
+
+    .animal-card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho disponible en móviles */
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
+
+/* Estilo de badges */
+.badges {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.badge {
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);  /* Aumenta ligeramente el tamaño en hover */
+}
+
+.badge-details {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-translúcido */
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.badge.adopted { background-color: #3498db; } /* Azul para adoptado */
+.badge.rescued { background-color: #e74c3c; } /* Rojo para rescatado */
+.badge.vet { background-color: #f39c12; } /* Naranja para médico tratante */
+.badge.donated { background-color: #2ecc71; } /* Verde para donado */
+.badge.temp-shelter { background-color: #9b59b6; } /* Morado para resguardo temporal */
+
+/* Estilo del mensaje emotivo */
+.emotion-message {
+    color: #e74c3c; 
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(231, 76, 60, 0.1); /* Fondo sutil para que resalte */
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Animación de carga */
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
