@@ -4,6 +4,7 @@ import '../styles/styles.css';
 
 const AnimalCatalog = () => {
     const [animals, setAnimals] = useState([]);
+    const [animalImages, setAnimalImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -21,6 +22,12 @@ const AnimalCatalog = () => {
                 animalsWithDetails.sort((a, b) => a.relationsCount - b.relationsCount);
 
                 setAnimals(animalsWithDetails);
+
+                // Generar URLs únicas para las imágenes
+                const images = animalsWithDetails.map(() => ({
+                    url: `https://cataas.com/cat?unique=${Date.now() + Math.random()}`
+                }));
+                setAnimalImages(images);
             } catch (error) {
                 console.error('Error fetching animals:', error);
             } finally {
@@ -43,9 +50,13 @@ const AnimalCatalog = () => {
             </nav>
             <h1>Animales que necesitan ayuda</h1>
             <div className="animals-grid">
-                {animals.map((animal) => (
+                {animals.map((animal, index) => (
                     <div key={animal.id} className="animal-card">
-                        <img src={animal.photo || 'default-photo.jpg'} alt={animal.name} />
+                        {/* Cargar URL única para cada imagen */}
+                        <img
+                            src={animalImages[index]?.url || 'default-photo.jpg'}
+                            alt={animal.name}
+                        />
                         <h3>{animal.name}</h3>
                         <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
                         <div className="sterilized-badge">
