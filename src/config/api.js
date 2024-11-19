@@ -1,6 +1,6 @@
 // src/config/api.js
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://animales.onrender.com';
 
 export const getAllPersons = async () => {
     const response = await fetch(`${BASE_URL}/persons`);
@@ -54,7 +54,7 @@ export const deletePerson = async (id) => {
 };
 
 export const getAllAnimals = async () => {
-    const response = await fetch(`${BASE_URL}/animals`);
+    const response = await fetch(`${BASE_URL}/animals/`);
     return response.json();
 };
 

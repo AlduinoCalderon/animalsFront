@@ -12,7 +12,6 @@ const AnimalCatalog = () => {
                 const animalData = await getAllAnimals();
                 const animalsWithDetails = await Promise.all(
                     animalData.map(async (animal) => {
-                        // Obtener relaciones adicionales desde el backend
                         const relations = await getAnimalRelations(animal.id);
                         return { ...animal, relations };
                     })
@@ -38,7 +37,7 @@ const AnimalCatalog = () => {
                 <div className="animals-grid">
                     {animals.map((animal) => (
                         <div key={animal.id} className="animal-card">
-                            <img src={animal.photoUrl || 'default-photo.jpg'} alt={animal.name} />
+                            <img src={animal.photo || 'default-photo.jpg'} alt={animal.name} />
                             <h3>{animal.name}</h3>
                             
                             {/* Mostrar las badges de las relaciones del animal */}
