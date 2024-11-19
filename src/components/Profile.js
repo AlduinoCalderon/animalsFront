@@ -28,7 +28,10 @@ const UserProfile = () => {
     }, [id]);
 
     if (loading) return <p>Cargando perfil...</p>;
-    if (!user) return <p>Usuario no encontrado.</p>;
+    if (!id) return <div>
+        <nav className="navbar">
+        <a href="/" className="nav-link">Catálogo de Animales</a>
+        </nav>  En construcción.</div>; 
 
     return (
         <div className="user-profile-container">
@@ -52,7 +55,7 @@ const UserProfile = () => {
                 {relations.length > 0 ? (
                     relations.map((relation, index) => (
                         <div key={index} className="animal-relation">
-                            <a href={`/animal/${relation.animal.id_animal}`}>
+                            <a href={`/animal/${relation.animal.id}`}>
                                 {relation.animal.name}
                             </a>
                             <span>{relation.relationType}</span>

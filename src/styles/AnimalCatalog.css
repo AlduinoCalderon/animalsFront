@@ -1,0 +1,67 @@
+.navbar {
+    background-color: #f4f4f4;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.animal-catalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.animal-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    width: 300px;
+}
+
+.relations .badge {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.relations .badge:hover {
+    background-color: #0056b3;
+}
+
+.badge-sterilized {
+    background-color: green;
+}
+
+.badge-not-sterilized {
+    background-color: red;
+}
+
+.animal-links {
+    margin-top: 10px;
+}
+
+.btn-help, .btn-know {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.btn-help:hover, .btn-know:hover {
+    background-color: #218838;
+}

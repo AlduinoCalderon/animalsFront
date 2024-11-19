@@ -24,6 +24,17 @@ export const getAnimalRelations = async (animalId) => {
     }
 };
 
+export const getPersonRelations = async (personId) => {
+    try {
+        const response = await fetch(`${BASE_URL}/relations/person/${personId}`);
+        if (!response.ok) throw new Error('Error al obtener relaciones de la persona');
+        const data = await response.json();
+        return data.data; // Esto devolverá un array de relaciones
+    } catch (error) {
+        console.error("Error fetching relations:", error);
+        return [];
+    }
+};
 export const createPerson = async (personData) => {
     const response = await fetch(`${BASE_URL}/persons`, {
         method: 'POST',
@@ -107,10 +118,10 @@ export const createRelation = async (relationData) => {
 // Nueva función para obtener el número de relaciones de un animal
 export const getAnimalRelationsCount = async (animalId) => {
     try {
-        const response = await fetch(`${BASE_URL}/api/count/${animalId}`);
+        const response = await fetch(`${BASE_URL}/count/${animalId}`);
         const data = await response.json();
-        if (!data.relationsCount) throw new Error('Relations count not found');
-        return data.relationsCount;
+        if (!data.relationCount) throw new Error('Relations count not found');
+        return data.relationCount;
     } catch (error) {
         console.error('Error fetching animal relations count:', error);
         return 0;

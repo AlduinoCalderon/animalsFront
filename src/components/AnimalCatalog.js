@@ -13,12 +13,16 @@ const AnimalCatalog = () => {
                 const animalsWithDetails = await Promise.all(
                     animalData.map(async (animal) => {
                         const relations = await getAnimalRelations(animal.id);
-                        return { ...animal, relations };
+                        return { ...animal, relations, relationsCount: relations.length };
                     })
                 );
+
+                // Ordenar por número de relaciones
+                animalsWithDetails.sort((a, b) => a.relationsCount - b.relationsCount);
+
                 setAnimals(animalsWithDetails);
             } catch (error) {
-                console.error("Error fetching animals:", error);
+                console.error('Error fetching animals:', error);
             } finally {
                 setLoading(false);
             }
@@ -27,63 +31,52 @@ const AnimalCatalog = () => {
         fetchAnimals();
     }, []);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p>Cargando catálogo...</p>;
+
+    const currentYear = new Date().getFullYear();
 
     return (
         <div className="container">
+            <nav className="navbar">
+                <a href="/" className="nav-link">Catálogo de Animales</a>
+                <a href="/perfil" className="nav-link">Tu Perfil</a>
+            </nav>
             <h1>Animales que necesitan ayuda</h1>
-            <div className="help-section">
-                <h2>Posibles animales a los que puedes ayudar</h2>
-                <div className="animals-grid">
-                    {animals.map((animal) => (
-                        <div key={animal.id} className="animal-card">
-                            <img src={animal.photo || 'default-photo.jpg'} alt={animal.name} />
-                            <h3>{animal.name}</h3>
-                            
-                            {/* Mostrar las badges de las relaciones del animal */}
-                            <div className="badges">
-                                {animal.relations.map((relation, index) => {
-                                    // Se verifica el tipo de relación para asignar las badges adecuadas
-                                    let badgeClass = '';
-                                    switch (relation.relationType) {
-                                        case 'adopted':
-                                            badgeClass = 'badge adopted';
-                                            break;
-                                        case 'rescued':
-                                            badgeClass = 'badge rescued';
-                                            break;
-                                        case 'vet':
-                                            badgeClass = 'badge vet';
-                                            break;
-                                        case 'donated':
-                                            badgeClass = 'badge donated';
-                                            break;
-                                        case 'temp-shelter':
-                                            badgeClass = 'badge temp-shelter';
-                                            break;
-                                        default:
-                                            badgeClass = 'badge'; // Default badge class
-                                            break;
-                                    }
-
-                                    return (
-                                        <span key={index} className={badgeClass}>
-                                            {relation.relationData.details}
-                                        </span>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Si no hay relaciones, muestra mensaje */}
-                            {animal.relations.length === 0 && (
-                                <p>Nadie me ha ayudado aún. <br /> ¡Sé el primero en cambiar mi vida!</p>
+            <div className="animals-grid">
+                {animals.map((animal) => (
+                    <div key={animal.id} className="animal-card">
+                        <img src={animal.photo || 'default-photo.jpg'} alt={animal.name} />
+                        <h3>{animal.name}</h3>
+                        <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
+                        <div className="sterilized-badge">
+                            {animal.sterilized ? (
+                                <span className="badge badge-sterilized">Esterilizado</span>
+                            ) : (
+                                <span className="badge badge-not-sterilized">No Esterilizado</span>
                             )}
-
-                            <p>{animal.description}</p>
-                            <button className="help-button">Ayudar a {animal.name}</button>
                         </div>
-                    ))}
-                </div>
+                        <div className="badges">
+                            {animal.relations.length > 0 ? (
+                                animal.relations.map((relation, index) => (
+                                    <a
+                                        key={index}
+                                        href={`/perfil/${relation.person.id}`}
+                                        className="badge"
+                                    >
+                                        {relation.relationType}
+                                    </a>
+                                ))
+                            ) : (
+                                <p>😿 Nadie me ha ayudado aún.</p>
+                            )}
+                        </div>
+                        <div className="animal-links">
+                            <a href={`/animal/${animal.id}`} className="know-button">
+                                Conoce a {animal.name}
+                            </a>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
