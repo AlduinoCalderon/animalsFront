@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { getAllAnimals, getAnimalRelations } from '../config/api';
 import '../styles/styles.css';
 
+const relationStyles = {
+    ADOPTED: { text: "Adoptante 🏠", color: "#4caf50" },
+    SPONSORED: { text: "Padrino 💸", color: "#2196f3" },
+    VETERINARIAN: { text: "Médico Veterinario 🩺", color: "#ff9800" },
+    TEMPORARY_CARE: { text: "Cuidador Temporal 🛏️", color: "#9c27b0" },
+    RESCUED: { text: "Rescatado 🚑", color: "#ff5722" }
+};
+
 const AnimalCatalog = () => {
     const [animals, setAnimals] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,11 +21,18 @@ const AnimalCatalog = () => {
                 const animalsWithDetails = await Promise.all(
                     animalData.map(async (animal) => {
                         const relations = await getAnimalRelations(animal.id);
-                        return { ...animal, relations, relationsCount: relations.length };
+                        const enrichedRelations = relations.map((relation) => ({
+                            ...relation,
+                            person: {
+                                ...relation.person,
+                                photo: `https://thispersondoesnotexist.com?unique=${Date.now() + Math.random()}`
+                            }
+                        }));
+                        return { ...animal, relations: enrichedRelations, relationsCount: relations.length };
                     })
                 );
 
-                // Ordenar por número de relaciones
+                // Ordenar por número de relaciones de menor a mayor
                 animalsWithDetails.sort((a, b) => a.relationsCount - b.relationsCount);
 
                 setAnimals(animalsWithDetails);
@@ -57,15 +72,22 @@ const AnimalCatalog = () => {
                         <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
                         <div className="badges">
                             {animal.relations.length > 0 ? (
-                                animal.relations.map((relation, index) => (
-                                    <div key={index} className={`badge ${relation.relationType.toLowerCase()}`}>
-                                        {relation.relationType}
-                                        <div className="badge-details">
-                                            <img src={relation.person.photo || 'default-photo.jpg'} alt="User" />
-                                            <p>{relation.person.first_name}</p>
+                                animal.relations.map((relation, index) => {
+                                    const style = relationStyles[relation.relationType];
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="badge"
+                                            style={{ backgroundColor: style?.color || '#9e9e9e' }}
+                                        >
+                                            {style?.text || "Relación Desconocida"}
+                                            <div className="badge-details">
+                                                <img src={relation.person.photo} alt="User" />
+                                                <p>{relation.person.first_name}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))
+                                    );
+                                })
                             ) : (
                                 <p>😿 Nadie me ha ayudado aún.</p>
                             )}
