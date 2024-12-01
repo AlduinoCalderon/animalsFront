@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getPersonById, getPersonRelations } from '../config/api';
 import '../styles/styles.css';
+import '../styles/profiles.css';
 
 const UserProfile = () => {
     const { id } = useParams();
     const [user, setUser] = useState(null);
     const [relations, setRelations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -19,6 +21,7 @@ const UserProfile = () => {
                 setRelations(userRelations);
             } catch (err) {
                 console.error('Error fetching user data:', err);
+                setError('No se pudo cargar el perfil del usuario.');
             } finally {
                 setLoading(false);
             }
@@ -28,13 +31,14 @@ const UserProfile = () => {
     }, [id]);
 
     if (loading) return <p>Cargando perfil...</p>;
+    if (error) return <p>{error}</p>;
     if (!user) return <p>Usuario no encontrado.</p>;
 
     return (
         <div className="user-profile-container">
             <nav className="navbar">
-                <a href="/" className="nav-link">Catálogo de Animales</a>
-                <a href="/perfil" className="nav-link">Tu Perfil</a>
+                <Link to="/" className="nav-link">Catálogo de Animales</Link>
+                <Link to="/perfil" className="nav-link">Tu Perfil</Link>
             </nav>
             <div className="profile-header">
                 <div className="profile-photo-circle">
@@ -52,9 +56,13 @@ const UserProfile = () => {
                 {relations.length > 0 ? (
                     relations.map((relation, index) => (
                         <div key={index} className="animal-relation">
-                            <a href={`/animal/${relation.animal.id_animal}`}>
-                                {relation.animal.name}
-                            </a>
+                            {relation.animal ? (
+                                <Link to={`/animal/${relation.animal.id_animal}`} className="relation-link">
+                                    {relation.animal.name}
+                                </Link>
+                            ) : (
+                                <p>Información del animal no disponible.</p>
+                            )}
                             <span>{relation.relationType}</span>
                         </div>
                     ))

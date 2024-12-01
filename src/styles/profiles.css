@@ -1,0 +1,70 @@
+/* Contenedor de perfil centrado y con sombra */
+.user-profile-container {
+    width: 100%;
+    max-width: 900px;  /* Se limita el ancho para evitar que ocupe toda la pantalla */
+    margin: 0 auto;  /* Centra el contenedor */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header del perfil con foto */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px;
+    border: 3px solid #ddd;
+}
+
+.profile-photo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Detalles del perfil */
+.user-details p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 8px 0;
+}
+
+/* Relaciones con los animales */
+.user-relations {
+    margin-top: 20px;
+}
+
+.animal-relation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.animal-relation span {
+    margin-left: 10px;
+    color: #555;
+}
+
+/* Enlaces dentro de las relaciones */
+.relation-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.relation-link:hover {
+    text-decoration: underline;
+}
+
+/* Resaltar los textos dentro del perfil */
+h1, h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}

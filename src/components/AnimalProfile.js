@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getAnimalById, getAnimalRelations } from '../config/api';
-import '../styles/styles.css';
+import '../styles/styles.css'; // Mantiene estilos generales
+import '../styles/profiles.css'; // Estilos específicos de perfiles
 
 const AnimalProfile = () => {
     const { id } = useParams();
@@ -37,7 +38,7 @@ const AnimalProfile = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <div className="animal-profile-container">
+        <div className="profile-container">
             <nav className="navbar">
                 <a href="/" className="nav-link">Catálogo de Animales</a>
                 <a href="/perfil" className="nav-link">Tu Perfil</a>
@@ -57,7 +58,7 @@ const AnimalProfile = () => {
                 <p><strong>Esterilizado:</strong> {animal.sterilized ? 'Sí' : 'No'}</p>
                 <p><strong>Relaciones:</strong> {animal.relationsCount}</p>
             </div>
-            <div className="animal-relations">
+            <div className="relations-section">
                 <h2>Relaciones</h2>
                 {animal.relations.length > 0 ? (
                     animal.relations.map((relation, index) => (
