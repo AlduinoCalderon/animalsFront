@@ -42,7 +42,9 @@ const AnimalProfile = () => {
             <nav className="navbar">
                 <a href="/" className="nav-link">Catálogo de Animales</a>
                 <a href="/perfil" className="nav-link">Tu Perfil</a>
+                <a href="/gestionar-animales" className="nav-link">Gestionar Animales</a>
             </nav>
+
             <div className="profile-header">
                 <div className="profile-photo-circle">
                     <img
@@ -54,7 +56,16 @@ const AnimalProfile = () => {
             </div>
             <div className="animal-details">
                 <p><strong>Especie:</strong> {animal.species}</p>
-                <p><strong>Edad:</strong> {currentYear - parseInt(animal.birth_year.low)} años</p>
+                <p><strong>Edad: </strong>
+                {currentYear - (animal.birth_year.low 
+                    ? parseInt(animal.birth_year.low) 
+                    : parseInt(animal.birth_year)) === 0 
+                    ? "Cachorro" 
+                    : `${currentYear - (animal.birth_year.low 
+                        ? parseInt(animal.birth_year.low) 
+                        : parseInt(animal.birth_year))} años`}
+                </p>
+
                 <p><strong>Esterilizado:</strong> {animal.sterilized ? 'Sí' : 'No'}</p>
                 <p><strong>Relaciones:</strong> {animal.relationsCount}</p>
             </div>

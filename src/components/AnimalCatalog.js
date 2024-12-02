@@ -53,9 +53,11 @@ const AnimalCatalog = () => {
     return (
         <div className="container">
             <nav className="navbar">
-                <a href="/" className="nav-link">Catálogo</a>
-                <a href="/perfil" className="nav-link">Perfil</a>
+                <a href="/" className="nav-link">Catálogo de Animales</a>
+                <a href="/perfil" className="nav-link">Tu Perfil</a>
+                <a href="/gestionar-animales" className="nav-link">Gestionar Animales</a>
             </nav>
+
             <h1>Animales que necesitan ayuda</h1>
             <div className="animals-grid">
                 {animals.map((animal) => (
@@ -69,7 +71,16 @@ const AnimalCatalog = () => {
                        alt={animal.name}
                    />
                    <h3>{animal.name}</h3>
-                   <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
+                   <p>Edad:  {currentYear - (animal.birth_year.low 
+                        ? parseInt(animal.birth_year.low) 
+                        : parseInt(animal.birth_year)) === 0 
+                        ? "Cachorro" 
+                        : `${currentYear - (animal.birth_year.low 
+                            ? parseInt(animal.birth_year.low) 
+                            : parseInt(animal.birth_year))} años`}
+                   </p>
+
+
                    <div className="badges">
                        {animal.relations.length > 0 ? (
                            animal.relations.map((relation, index) => {

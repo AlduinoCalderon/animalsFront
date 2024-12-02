@@ -49,7 +49,7 @@ export const createPerson = async (personData) => {
 
 export const updatePerson = async (id, personData) => {
     const response = await fetch(`${BASE_URL}/persons/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(personData)
     });
@@ -88,7 +88,7 @@ export const createAnimal = async (animalData) => {
 
 export const updateAnimal = async (id, animalData) => {
     const response = await fetch(`${BASE_URL}/animals/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(animalData)
     });

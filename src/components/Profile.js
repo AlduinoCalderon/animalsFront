@@ -38,7 +38,9 @@ const UserProfile = () => {
             <nav className="navbar">
                 <a href="/" className="nav-link">Catálogo de Animales</a>
                 <a href="/perfil" className="nav-link">Tu Perfil</a>
+                <a href="/gestionar-animales" className="nav-link">Gestionar Animales</a>
             </nav>
+
             <div className="profile-header">
                 <div className="profile-photo-circle">
                     <img

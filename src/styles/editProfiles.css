@@ -1,0 +1,108 @@
+.mgmt-animal-edit-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mgmt-animal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.mgmt-animal-card {
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.mgmt-animal-card:hover {
+    transform: scale(1.05);
+}
+
+.mgmt-animal-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.mgmt-edit-form-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mgmt-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.mgmt-input, .mgmt-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+}
+
+.mgmt-button {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.mgmt-button:hover {
+    background-color: #0056b3;
+}
+
+.mgmt-button-delete {
+    background-color: #ff4d4d; /* Rojo vibrante */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mgmt-button-delete:hover {
+    background-color: #e60000; /* Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+.mgmt-button-edit {
+    background-color: #4caf50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mgmt-button-edit:hover {
+    background-color: #388e3c; /* Verde más oscuro */
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95); /* Retroceso al presionar */
+}
+

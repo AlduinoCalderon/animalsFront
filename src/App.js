@@ -4,6 +4,8 @@ import AnimalCatalog from './components/AnimalCatalog';
 import AnimalProfile from './components/AnimalProfile';
 import UserProfile from './components/UserProfile';
 import Profile from './components/Profile';
+import ManageAnimalCatalog from './components/ManageAnimalCatalog';
+import ManagePersonCatalog from './components/ManagePersonCatalog';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/perfil" element={<Profile />} />
         <Route path="/animal/:id" element={<AnimalProfile />} />
         <Route path="/perfil/:id" element={<UserProfile />} />
+        <Route path="/gestionar-animales" element={<ManageAnimalCatalog />} />
+        <Route path="/gestionar-personas" element={<ManagePersonCatalog />} />
       </Routes>
     </Router>
   );
