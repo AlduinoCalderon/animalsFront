@@ -50,7 +50,7 @@ const AnimalProfile = () => {
                         alt={animal.name}
                     />
                 </div>
-                <h1>Perfil de {animal.name}</h1>
+                <h1>Conoce a {animal.name}</h1>
             </div>
             <div className="animal-details">
                 <p><strong>Especie:</strong> {animal.species}</p>

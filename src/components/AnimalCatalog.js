@@ -59,42 +59,47 @@ const AnimalCatalog = () => {
             <h1>Animales que necesitan ayuda</h1>
             <div className="animals-grid">
                 {animals.map((animal) => (
-                    <div
-                        key={animal.id}
-                        className="animal-card"
-                        onClick={() => window.location.href = `/animal/${animal.id}`}
-                    >
-                        <img
-                            src={`https://cataas.com/cat?unique=${Date.now() + Math.random()}`}
-                            alt={animal.name}
-                        />
-                        <h3>{animal.name}</h3>
-                        <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
-                        <div className="badges">
-                            {animal.relations.length > 0 ? (
-                                animal.relations.map((relation, index) => {
-                                    const style = relationStyles[relation.relationType];
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="badge"
-                                            style={{ backgroundColor: style?.color || '#9e9e9e' }}
-                                        >
-                                            {style?.text || "Relación Desconocida"}
-                                            <div className="badge-details">
-                                                <a href={`/perfil/${relation.person.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                                    <img src={relation.person.photo} alt="User" />
-                                                    <p>{relation.person.first_name}</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            ) : (
-                                <p>😿 Nadie me ha ayudado aún.</p>
-                            )}
-                        </div>
-                    </div>
+                   <div
+                   key={animal.id}
+                   className="animal-card"
+                   onClick={() => window.location.href = `/animal/${animal.id}`}
+               >
+                   <img
+                       src={`https://cataas.com/cat?unique=${Date.now() + Math.random()}`}
+                       alt={animal.name}
+                   />
+                   <h3>{animal.name}</h3>
+                   <p>Edad: {currentYear - parseInt(animal.birth_year.low)} años</p>
+                   <div className="badges">
+                       {animal.relations.length > 0 ? (
+                           animal.relations.map((relation, index) => {
+                               const style = relationStyles[relation.relationType];
+                               return (
+                                   <a
+                                       key={index}
+                                       href={`/perfil/${relation.person.id}`}
+                                       className="badge"
+                                       style={{
+                                           backgroundColor: style?.color || '#9e9e9e',
+                                           textDecoration: 'none', // Elimina subrayado del enlace
+                                           color: 'white', // Asegura legibilidad
+                                           display: 'block', // Asegura que el área completa de la badge sea clicable
+                                       }}
+                                   >
+                                       {style?.text || "Relación Desconocida"}
+                                       <div className="badge-details">
+                                           <img src={relation.person.photo} alt="User" />
+                                           <p>{relation.person.first_name + " " + relation.person.last_name}</p>
+                                       </div>
+                                   </a>
+                               );
+                           })
+                       ) : (
+                           <p>😿 Nadie me ha ayudado aún.</p>
+                       )}
+                   </div>
+               </div>
+               
                 ))}
             </div>
         </div>

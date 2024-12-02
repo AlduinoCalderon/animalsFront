@@ -59,9 +59,7 @@ body {
     font-size: 1.2rem;
 }
 
-.animal-card p {
-    color: #555;
-}
+
 
 .animal-links a {
     background-color: #28a745;
@@ -79,11 +77,11 @@ body {
 
 /* Badges */
 .badges {
-    display: flex;
+    display:  block;
     gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 10px 0;
+    margin: 10px 20px;
 }
 
 .badge {
@@ -94,31 +92,23 @@ body {
     position: relative;
 }
 
-.badge:hover .badge-details {
-    display: flex;
+.badge-details {
+    display: none; /* Oculto inicialmente */
+    background-color: inherit; /* Hereda el color de fondo del badge */
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 100%;
+    left: 33%;
+    z-index: 1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Badge Hover Tooltip */
-.badge-details {
-    display: none;
-    position: absolute;
-    top: -110%;
-    left: 50%;
-    transform: translate(-50%, -10%);
-    background-color: white;
-    color: black;
-    padding: 10px;
-    border-radius: 7%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    z-index: 1000;
-    font-size: 0.85rem;
-    width: 80px;
-    height: 80px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.badge:hover .badge-details {
+    display: block; /* Muestra los detalles al pasar el mouse */
 }
+
 
 .badge-details img {
     width: 50px;
