@@ -58,29 +58,31 @@ const ManageAnimalCatalog = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        if (!formData.name.trim() || !formData.species.trim()) {
+            alert('El nombre y la especie son obligatorios.');
+            return;
+        }
+    
         try {
             if (isEditing) {
-                let idActual = formData.id;
-                console.log(formData.animal_id);
-                console.log(formData);
-                await updateAnimal(idActual, formData);
-                setAnimals((prev) =>
-                    prev.map((animal) =>
-                        animal.id === idActual ? { ...animal, ...formData } : animal
-                    )
-                );
+                await updateAnimal(formData.id, formData);
             } else {
-                const newAnimal = await createAnimal(formData);
-                setAnimals((prev) => [...prev, newAnimal]);
+                await createAnimal(formData);
             }
+    
+            // Actualizar el catálogo
+            const updatedAnimals = await getAllAnimals();
+            setAnimals(updatedAnimals);
+    
             alert(`Animal ${isEditing ? 'actualizado' : 'creado'} correctamente.`);
             setSelectedAnimal(null);
             setFormData({
                 id: '',
-                species: '',
                 name: '',
-                birth_year: '',
-                sterilized: false,
+                species: '',
+                age: '',
+                description: '',
                 photo: '',
             });
         } catch (err) {
@@ -88,6 +90,7 @@ const ManageAnimalCatalog = () => {
             alert('Hubo un error al guardar el animal.');
         }
     };
+    
 
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este animal?');
@@ -107,11 +110,7 @@ const ManageAnimalCatalog = () => {
 
     return (
         <div className="mgmt-animal-edit-container">
-            <nav className="navbar">
-                <a href="/" className="nav-link">Catálogo de Animales</a>
-                <a href="/perfil" className="nav-link">Tu Perfil</a>
-                <a href="/gestionar-animales" className="nav-link">Gestionar Animales</a>
-            </nav>
+            
             <h1>Gestión de Animales Registrados</h1>
             <div className="mgmt-animal-list">
                 {animals.map((animal) => (

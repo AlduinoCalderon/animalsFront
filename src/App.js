@@ -6,10 +6,12 @@ import UserProfile from './components/UserProfile';
 import Profile from './components/Profile';
 import ManageAnimalCatalog from './components/ManageAnimalCatalog';
 import ManagePersonCatalog from './components/ManagePersonCatalog';
+import Navbar from './components/Navbar'; 
 
 function App() {
   return (
     <Router>
+      <Navbar />  {/* Navbar fuera de las rutas para que sea global */}
       <Routes>
         <Route path="/" element={<AnimalCatalog />} />
         <Route path="/perfil" element={<Profile />} />
