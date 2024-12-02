@@ -82,8 +82,10 @@ const AnimalCatalog = () => {
                                         >
                                             {style?.text || "Relación Desconocida"}
                                             <div className="badge-details">
-                                                <img src={relation.person.photo} alt="User" />
-                                                <p>{relation.person.first_name}</p>
+                                                <a href={`/perfil/${relation.person.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                    <img src={relation.person.photo} alt="User" />
+                                                    <p>{relation.person.first_name}</p>
+                                                </a>
                                             </div>
                                         </div>
                                     );
@@ -91,11 +93,6 @@ const AnimalCatalog = () => {
                             ) : (
                                 <p>😿 Nadie me ha ayudado aún.</p>
                             )}
-                        </div>
-                        <div className="animal-links">
-                            <a href={`/animal/${animal.id}`} className="know-button">
-                                Conoce a {animal.name}
-                            </a>
                         </div>
                     </div>
                 ))}
