@@ -1,14 +1,15 @@
 {
-  "name": "frontend",
+  "name": "rescate-animal",
   "version": "0.1.0",
   "private": true,
+  "author": "Alduino Calderón",
   "dependencies": {
     "@react-spring/web": "^9.7.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
-    "frontend": "file:",
+    "rescate-animal": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
